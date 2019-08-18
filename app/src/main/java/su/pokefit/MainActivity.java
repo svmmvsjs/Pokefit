@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        recyclerView = (RecyclerView) findViewById(R.id.xml_recycler_pokedex);
+        recyclerView = findViewById(R.id.xml_recycler_pokedex);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -32,16 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void createAPI() {
         Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(PokeAPI.BASE_URL)
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
+                .baseUrl(PokeAPI.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         pokeAPI = retrofit.create(PokeAPI.class);
     }
 
     Callback<Pokedex> pokeCallback = new Callback<Pokedex>() {
         @Override
         public void onResponse(Call<Pokedex> call, Response<Pokedex> response) {
-            if (response.isSuccessful()) {
+            if (response.isSuccessful() && response.body() != null) {
                 Pokedex data = new Pokedex();
                 data.setEntries(response.body().getEntries());
                 //data is a list of entries with number and name

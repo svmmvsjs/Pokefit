@@ -26,7 +26,7 @@ public class PokedexViewAdapter extends RecyclerView.Adapter<PokedexViewAdapter.
 
         public PokeHolder(View view) {
             super(view);
-            myItem = (TextView) view.findViewById(R.id.xml_pokedex_item);
+            myItem = view.findViewById(R.id.xml_pokedex_item);
             view.setOnClickListener(this);
         }
 

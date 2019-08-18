@@ -7,7 +7,9 @@
     tools:context="su.pokefit.MainActivity"
     android:background="@color/colorBlack"
     android:paddingLeft="16sp"
-    android:paddingRight="16dp">
+    android:paddingRight="16dp"
+    android:paddingStart="16sp"
+    android:paddingEnd="16dp">
 
     <!-- load toolbar -->
     <include

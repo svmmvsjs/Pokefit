@@ -51,7 +51,7 @@ public class DetailActivity extends AppCompatActivity {
     Callback<LangDescription> descCallback = new Callback<LangDescription>() {
         @Override
         public void onResponse(Call<LangDescription> call, Response<LangDescription> response) {
-            if (response.isSuccessful()) {
+            if (response.isSuccessful() && response.body() != null) {
                 LangDescription data = new LangDescription();
                 data.setDescriptions(response.body().getDescriptions());
                 //index 1 represents English description
@@ -68,7 +68,7 @@ public class DetailActivity extends AppCompatActivity {
     };
 
     private void configureImage(int pokeId) {
-        String url = "https://pokeapi.co/media/img/" + String.valueOf(pokeId) + ".png";
+        String url = "https://pokeapi.co/media/img/" + pokeId + ".png";
         Glide.with(this)
                 .load(url)
                 .override(480,480)

@@ -6,7 +6,9 @@
     android:paddingBottom="12sp"
     android:paddingLeft="16sp"
     android:paddingRight="16dp"
-    android:paddingTop="12sp">
+    android:paddingTop="12sp"
+    android:paddingStart="16sp"
+    android:paddingEnd="16dp">
 
     <TextView
         android:textColor="@color/colorWhite"

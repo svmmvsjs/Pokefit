@@ -7,7 +7,9 @@
     tools:context="su.pokefit.DetailActivity"
     android:paddingLeft="16sp"
     android:paddingRight="16dp"
-    android:background="@color/colorBlack">
+    android:background="@color/colorBlack"
+    android:paddingStart="16sp"
+    android:paddingEnd="16dp">
 
     <!-- load toolbar -->
     <include
@@ -39,6 +41,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="16sp"
-        android:paddingRight="16dp"/>
+        android:paddingRight="16dp"
+        android:paddingStart="16sp"
+        android:paddingEnd="16dp" />
 
 </LinearLayout>
