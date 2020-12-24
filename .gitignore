@@ -1,9 +1,15 @@
+# Ignore
+.idea/*
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+*.ipr
+*.iws
+.gradle/
+local.properties
+build/
 .DS_Store
-/build
-/captures
 .externalNativeBuild
+/captures
+
+# Allow
+buildCache
+buildCache.lock
