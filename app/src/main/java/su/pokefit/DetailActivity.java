@@ -1,12 +1,11 @@
 package su.pokefit;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 
 import com.bumptech.glide.Glide;
 
@@ -21,9 +20,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class DetailActivity extends AppCompatActivity {
 
     private PokeAPI pokeAPI;
-    @BindView(R.id.xml_details_name) TextView title;
-    @BindView(R.id.xml_details_image) ImageView image;
-    @BindView(R.id.xml_detail_desc) TextView desc;
+    @BindView(R.id.xml_details_name)
+    TextView title;
+    @BindView(R.id.xml_details_image)
+    ImageView image;
+    @BindView(R.id.xml_detail_desc)
+    TextView desc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +44,9 @@ public class DetailActivity extends AppCompatActivity {
 
     private void createAPI() {
         Retrofit retrofit = new Retrofit.Builder()
-                                .baseUrl(PokeAPI.BASE_URL)
-                                .addConverterFactory(GsonConverterFactory.create())
-                                .build();
+                .baseUrl(PokeAPI.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         pokeAPI = retrofit.create(PokeAPI.class);
     }
 
@@ -68,10 +70,11 @@ public class DetailActivity extends AppCompatActivity {
     };
 
     private void configureImage(int pokeId) {
-        String url = "https://pokeapi.co/media/img/" + pokeId + ".png";
+        String url = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + pokeId + ".png";
         Glide.with(this)
                 .load(url)
-                .override(480,480)
+                .override(480, 480)
+                .placeholder(R.drawable.loading)
                 .into(image);
     }
 
