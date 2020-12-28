@@ -9,17 +9,20 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import su.pokefit.model.LangDescription;
 
 public class DetailActivity extends AppCompatActivity {
 
-    private PokeAPI pokeAPI;
+    @Inject
+    PokeApi pokeAPI;
+
     @BindView(R.id.xml_details_name)
     TextView title;
     @BindView(R.id.xml_details_image)
@@ -31,6 +34,8 @@ public class DetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+        PokeApp.appComponent().inject(this);
+
         ButterKnife.bind(this);
         Intent intent = getIntent();
         int pokeId = intent.getIntExtra("pokeInt", 1);
@@ -38,16 +43,7 @@ public class DetailActivity extends AppCompatActivity {
         title.setText(pokeName);
         configureImage(pokeId);
 
-        createAPI();
         pokeAPI.getAllDescriptions(pokeId).enqueue(descCallback);
-    }
-
-    private void createAPI() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(PokeAPI.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        pokeAPI = retrofit.create(PokeAPI.class);
     }
 
     Callback<LangDescription> descCallback = new Callback<LangDescription>() {
@@ -74,8 +70,7 @@ public class DetailActivity extends AppCompatActivity {
         Glide.with(this)
                 .load(url)
                 .override(480, 480)
-                .placeholder(R.drawable.loading)
+                .placeholder(R.drawable.loading_128)
                 .into(image);
     }
-
 }

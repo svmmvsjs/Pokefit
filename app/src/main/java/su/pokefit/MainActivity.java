@@ -1,41 +1,36 @@
 package su.pokefit;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
+import javax.inject.Inject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+import su.pokefit.model.Pokedex;
 
 public class MainActivity extends AppCompatActivity {
 
-    private PokeAPI pokeAPI;
+    @Inject
+    PokeApi pokeAPI;
+
     private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        PokeApp.appComponent().inject(this);
 
         recyclerView = findViewById(R.id.xml_recycler_pokedex);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        createAPI();
         pokeAPI.getPokedex().enqueue(pokeCallback);
-    }
-
-    private void createAPI() {
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(PokeAPI.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        pokeAPI = retrofit.create(PokeAPI.class);
     }
 
     Callback<Pokedex> pokeCallback = new Callback<Pokedex>() {

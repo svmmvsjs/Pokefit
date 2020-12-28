@@ -1,4 +1,4 @@
-package su.pokefit;
+package su.pokefit.model;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -8,7 +8,7 @@ public class Species {
     private String name;
 
     public String getName() {
-        name = name.substring(0,1).toUpperCase() + name.substring(1);
+        name = name.substring(0, 1).toUpperCase() + name.substring(1);
         return name;
     }
 

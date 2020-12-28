@@ -1,4 +1,4 @@
-package su.pokefit;
+package su.pokefit.model;
 
 
 import com.google.gson.annotations.SerializedName;

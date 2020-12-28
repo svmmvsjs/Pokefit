@@ -4,11 +4,13 @@ package su.pokefit;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import su.pokefit.model.Entry;
+import su.pokefit.model.Pokedex;
 
 
 public class PokedexViewAdapter extends RecyclerView.Adapter<PokedexViewAdapter.PokeHolder>{
